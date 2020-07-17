@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Roboto&family=Sansita:ital@1&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #677;
+}
+
+h1, h2 {
+    font-family: 'Open Sans', sans-serif;
+    color: brown;
+    font-variant: small-caps;
+}
+
+th {
+    font-family: 'Sansita', sans-serif;
+    color: #28a745;
+    font-style: italic;
+    font-size: 1.5em;
+}
+
+/*sárga rgb(255, 208, 0)*/
