@@ -1,8 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Roboto&family=Sansita:ital@1&display=swap');
 
-body {
+html {
+    box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     color: #677;
+    background-color: rgb(255, 208, 0);
+}
+
+body {
+    width: 80%;
+    background-color: white;
+    margin: auto;
+    padding: 1.4%;
 }
 
 h1, h2 {
@@ -18,4 +27,32 @@ th {
     font-size: 1.5em;
 }
 
-/*sárga rgb(255, 208, 0)*/
+.menuElem {
+    display: inline-block;
+    width: 30.8%;
+    padding: 0.5em;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(128, 0, 0);
+    color: rgb(251, 174, 40);
+}
+
+section {
+    background-color: rgb(243, 226, 178);
+    padding: 2%;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px grey;
+    overflow: auto;
+}
+
+.akcioKep {
+    width: 150px;
+    border-radius: 5px;
+    float: right;
+}
+
+table {width: 100%;}
+.logoKep {width: 30px;}
+.logoBalra {text-align: left;}
+.logoJobbra {text-align: right;}
