@@ -1,15 +1,15 @@
 function sendOrderData() {
-    const name = document.querySelector("#name").value.trim();
-    const email = document.querySelector("#email").value.trim();
-    const address = document.querySelector("#address").value.trim();
-    const comment = document.querySelector("#comment").value.trim();
+    const name = document.querySelector("#name").value.trim()
+    const email = document.querySelector("#email").value.trim()
+    const address = document.querySelector("#address").value.trim()
+    const comment = document.querySelector("#comment").value.trim()
     const extra = parseInt(document.querySelector("[name=extra]:checked").value)
     const sauce = parseInt(document.querySelector("#sauce").value)
     const quantity = parseInt(document.querySelector("#quantity").value)
 
     if (isValidPersonalData(name, email, address, comment) && isValidQuantity(quantity)) {
         const message = document.querySelector("#message")
-        message.innerText = getTotal(extra, sauce, quantity);
+        message.innerText = getTotal(extra, sauce, quantity)
     }
 }
 
