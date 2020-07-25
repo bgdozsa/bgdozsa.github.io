@@ -1,43 +1,73 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Megrendelés</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- A saját stílusok az utolsók!! -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/weather.css">
 </head>
+
 <body>
 
+    <header>
+        <div class="row sor">
+            <div class="col-6">
+                <p class="balra">Időjárás</p>
+                <div class="row">
+                    <div class="col-8">
+                        <select class="form-control" name="day" id="day">
+                            <option value="0" selected>Hétfő</option>
+                            <option value="1">Kedd</option>
+                            <option value="2">Szerda</option>
+                            <option value="3">Csütörtök</option>
+                            <option value="4">Péntek</option>
+                            <option value="5">Szombat</option>
+                            <option value="6">Vasárnap</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-warning" type="button" value="Mutasd!" onclick="weatherWidget()">
+                </div>
+            </div>
+            <div class="col-6">
+                <p id="temperature" class="jobbra"></p>
+            </div>
+        </div>
+    </header>
     <nav>
-        <a class="menuElem" href="contact.html">Elérhetőség</a>
-        <a class="menuElem" href="menu.html">Étlap</a>
-        <a class="menuElem" href="order-form.html">Rendelés</a>
-        <a class="menuElem" href="index.html">Akciók</a>
+        <div class="row">
+            <a class="col-3 menuElem" href="contact.html">Elérhetőség</a>
+            <a class="col-3 menuElem" href="menu.html">Étlap</a>
+            <a class="col-3 menuElem" href="order-form.html">Rendelés</a>
+            <a class="col-3 menuElem" href="index.html">Akciók</a>
+        </div>
     </nav>
 
-    <form >
+    <form>
         <fieldset>
             <legend>Burger Wizard - Megrendelőlap</legend>
-            <div class="form-group"> 
+            <div class="form-group">
                 <!---a for hozzáköti a címkét az beviteli mezőhöz, a cimkére is lehet kattintani-->
                 <label class="label label-block" for="name">Név: *</label>
-                <input class="form-control" id="name" name="name" type="text" placeholder="Név" required> 
-            </div>  
+                <input class="form-control" id="name" name="name" type="text" placeholder="Név" required>
+            </div>
             <div class="form-group">
                 <label class="label label-block" for="email">Email cím: *</label>
                 <input class="form-control" id="email" name="email" type="email" placeholder="E-mail cím" required>
-            </div>  
+            </div>
             <div class="form-group">
                 <label class="label label-block" for="address">Cím: *</label>
                 <input class="form-control" id="address" name="address" type="text" placeholder="Cím" required>
-            </div>  
+            </div>
             <div class="form-group">
                 <label class="label label-block" for="comment">Megjegyzés: *</label>
                 <textarea class="form-control" id="comment" name="comment" rows="5" required></textarea>
             </div>
-            
+
             <span>Extra feltét:</span>
             <!--rádiógomb, egyszerre csak egy választható, ha a name megegyezik-->
             <div class="feltetCsoport">
@@ -65,7 +95,7 @@
                     <input class="form-check-input" id="cheese-double-meat" name="extra" type="radio" value="1300">
                     <label class="form-check-label" for="cheese-double-meat">sajt és dupla hús (+1300 Ft)</label>
                 </div>
-            </div> 
+            </div>
 
             <div class="form-group">
                 <label class="label label-block" for="sauce">Szósz: </label>
@@ -81,7 +111,7 @@
             </div>
             <div class="form-group">
                 Ár: <span class="message" id="message">1200</span> Ft
-                <input class="btn btn-success" type="button" value="Rendelés leadása" onclick="sendOrderData()"> 
+                <input class="btn btn-success" type="button" value="Rendelés leadása" onclick="sendOrderData()">
             </div>
         </fieldset>
     </form>
@@ -89,5 +119,8 @@
     <p class="kozepre">A házhoz szállítás díja 5000 Ft alatti rendelés esetén 500 Ft, melyet a végösszeg tartalmaz.</p>
 
     <script src="js/order-form.js"></script>
+    <script src="js/weather.js"></script>
+    <script>weatherWidget()</script>
 </body>
+
 </html>
