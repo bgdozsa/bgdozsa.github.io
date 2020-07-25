@@ -11,7 +11,7 @@ body {
     width: 80%;
     background-color: white;
     margin: auto;
-    padding: 1.4%;
+    padding: 15px;
 }
 
 h1, h2 {
@@ -28,7 +28,6 @@ th {
 }
 
 .menuElem {
-    width: 100%;
     padding: 0.5em;
     text-align: center;
     border: solid 2px white;
@@ -38,7 +37,7 @@ th {
     font-size: 1.3em;
 }
 .menuElem:hover {background-color: rgb(251, 174, 40); color: rgb(128, 0, 0);}
-
+.rowMargin {margin: 0;}
 section {
     background-color: rgb(243, 226, 178);
     padding: 2%;

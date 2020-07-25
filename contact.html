@@ -10,8 +10,8 @@
 </head>
 <body>
     
-    <header>
-        <div class="row sor">
+    <header class="sor">
+        <div class="row">
             <div class="col-6">
                 <p class="balra">Időjárás</p>
                 <div class="row">
@@ -33,14 +33,18 @@
                 <p id="temperature" class="jobbra"></p>
             </div>
         </div>
-    </header>
-    <nav>
         <div class="row">
-            <a class="col-3 menuElem" href="contact.html">Elérhetőség</a>
-            <a class="col-3 menuElem" href="menu.html">Étlap</a>
-            <a class="col-3 menuElem" href="order-form.html">Rendelés</a>
-            <a class="col-3 menuElem" href="index.html">Akciók</a>
+            <div class="col-4 balra" id="min"></div>
+            <div class="col-4 kozepre" id="max"></div>
+            <div class="col-4 jobbra" id="avg"></div>
         </div>
+    </header>
+
+    <nav class="row rowMargin">
+        <a class="col-3 menuElem" href="contact.html">Elérhetőség</a>
+        <a class="col-3 menuElem" href="menu.html">Étlap</a>
+        <a class="col-3 menuElem" href="order-form.html">Rendelés</a>
+        <a class="col-3 menuElem" href="index.html">Akciók</a>
     </nav>
 
 

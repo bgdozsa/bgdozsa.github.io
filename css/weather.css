@@ -1,9 +1,10 @@
 .sor {
     padding: 0.5em;
-    text-align: center;
     border: solid 2px white;
     border-radius: 10px;
     background-color: rgb(128, 0, 0);
     color: rgb(251, 174, 40);
     font-size: 1.3em;
 }
+
+#temperature {line-height: 2.1em;}
