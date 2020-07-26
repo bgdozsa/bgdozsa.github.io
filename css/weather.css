@@ -4,7 +4,8 @@
     border-radius: 10px;
     background-color: rgb(128, 0, 0);
     color: rgb(251, 174, 40);
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
 
 #temperature {line-height: 2.1em;}
+.degree {display: inline; font-size: 1em; padding: 7px 10px 0 15px;line-height: 1em;}

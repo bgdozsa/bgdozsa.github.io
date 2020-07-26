@@ -28,15 +28,25 @@ function weatherWidget() {
     const temperatureDiv = document.querySelector("#temperature")
     const temperature = findWeather(day).temperature
     const offerMessage = findOffer(temperature).offerMessage
-    temperatureDiv.innerHTML = temperature + " &deg;C"
+
+    temperatureDiv.innerHTML = COrF(temperature)
     temperatureDiv.innerHTML += "<br><span class='offer'>" + offerMessage + "</span>"
 
     const minDiv = document.querySelector("#min")
-    minDiv.innerHTML = "Minimum: " + minTemperature() + " &deg;C"
+    minDiv.innerHTML = "Minimum: " + COrF(minTemperature())
     const maxDiv = document.querySelector("#max")
-    maxDiv.innerHTML = "Maximum: " + maxTemperature() + " &deg;C"
+    maxDiv.innerHTML = "Maximum: " + COrF(maxTemperature())
     const avgDiv = document.querySelector("#avg")
-    avgDiv.innerHTML = "Átlag: " + avgTemperature().toFixed(2) + " &deg;C"
+    avgDiv.innerHTML = "Átlag: " + COrF(avgTemperature().toFixed(2))
+}
+
+function COrF(temperature) {
+    const degree = document.querySelector("[name=degree]:checked").value
+    if (degree == "c") {
+        return String(temperature) + " &deg;C"
+    } else {
+        return String((temperature * 1.8 + 32).toFixed(2)) + "F"
+    }
 }
 
 function findWeather(day) {

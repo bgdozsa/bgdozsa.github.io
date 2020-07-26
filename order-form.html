@@ -19,7 +19,7 @@
             <div class="col-6">
                 <p class="balra">Időjárás</p>
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-4">
                         <select class="form-control" name="day" id="day">
                             <option value="0" selected>Hétfő</option>
                             <option value="1">Kedd</option>
@@ -30,8 +30,19 @@
                             <option value="6">Vasárnap</option>
                         </select>
                     </div>
+
+                    <div class="form-check degree">
+                        <input class="form-check-input" checked id="celsius" name="degree" type="radio" value="c">
+                        <label class="form-check-label" for="celsius">Celsius</label>
+                    </div>
+                    <div class="form-check degree">
+                        <input class="form-check-input" id="fahrenheit" name="degree" type="radio" value="f">
+                        <label class="form-check-label" for="fahrenheit">Fahrenheit</label>
+                    </div>
+                    
                     <input class="btn btn-warning" type="button" value="Mutasd!" onclick="weatherWidget()">
                 </div>
+                
             </div>
             <div class="col-6">
                 <p id="temperature" class="jobbra"></p>
