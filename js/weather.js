@@ -1,3 +1,4 @@
+/*Így kapom meg az adatokat*/
 function getWeatherData() {
     let adatok =
     {
@@ -21,7 +22,9 @@ function getWeatherData() {
     return adatok
 }
 
+
 let data = getWeatherData()
+
 
 function weatherWidget() {
     const day = document.querySelector("#day").value
@@ -32,13 +35,18 @@ function weatherWidget() {
     temperatureDiv.innerHTML = COrF(temperature)
     temperatureDiv.innerHTML += "<br><span class='offer'>" + offerMessage + "</span>"
 
+    /*hőmérséklet objektum adattömbjének feltöltése*/
+    for (let i = 0; i < data.weathers.length; i++) {
+        hom.ertekek[i] = data.weathers[i].temperature;
+    }
     const minDiv = document.querySelector("#min")
-    minDiv.innerHTML = "Minimum: " + COrF(minTemperature())
+    minDiv.innerHTML = "Minimum: " + COrF(hom.minTemperature())
     const maxDiv = document.querySelector("#max")
-    maxDiv.innerHTML = "Maximum: " + COrF(maxTemperature())
+    maxDiv.innerHTML = "Maximum: " + COrF(hom.maxTemperature())
     const avgDiv = document.querySelector("#avg")
-    avgDiv.innerHTML = "Átlag: " + COrF(avgTemperature().toFixed(2))
+    avgDiv.innerHTML = "Átlag: " + COrF(hom.avgTemperature().toFixed(2))
 }
+
 
 function COrF(temperature) {
     const degree = document.querySelector("[name=degree]:checked").value
@@ -48,6 +56,7 @@ function COrF(temperature) {
         return String((temperature * 1.8 + 32).toFixed(2)) + "F"
     }
 }
+
 
 function findWeather(day) {
     for (let weather of data.weathers) {
@@ -66,32 +75,17 @@ function findOffer(temp) {
 }
 
 
-function minTemperature() {
-    let min = data.weathers.length != 0 ? data.weathers[0].temperature : 0
-    for (let i = 0; i < data.weathers.length; i++) {
-        if (min > data.weathers[i].temperature) {
-            min = data.weathers[i].temperature
-        }        
+/*hőmérséklet objektum*/
+let hom = {
+    ertekek: [],
+    minTemperature: function() { return Math.min.apply(null, this.ertekek) },
+    maxTemperature: function() { return Math.max.apply(null, this.ertekek) },
+    avgTemperature: function() {
+        let avg = 0
+        for (let i = 0; i < this.ertekek.length; i++) {
+            avg += this.ertekek[i]
+        }
+        return this.ertekek.length != 0 ? avg / this.ertekek.length : 0
     }
-    return min
 }
 
-
-function maxTemperature() {
-    let max = data.weathers.length != 0 ? data.weathers[0].temperature : 0
-    for (let i = 0; i < data.weathers.length; i++) {
-        if (max < data.weathers[i].temperature) {
-            max = data.weathers[i].temperature
-        }        
-    }
-    return max
-}
-
-
-function avgTemperature() {
-    let avg = 0
-    for (let i = 0; i < data.weathers.length; i++) {
-        avg += data.weathers[i].temperature
-    }
-    return data.weathers.length != 0 ? avg / data.weathers.length : 0
-}
