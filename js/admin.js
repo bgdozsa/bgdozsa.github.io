@@ -13,66 +13,50 @@
     </td>
 </tr> */
 
-// <tr>
-let sor = document.createElement("tr")
-//sor.innerHTML = "sor próbaszöveg"
-let szuloElem = document.querySelector("tbody#js")
-szuloElem.appendChild(sor)
+let felhasználók = [
+    {név: "Bagó Lajos", email: "bl@gmail.com", cím: "1111 Buda, Fő utca 11."},
+    {név: "Boros Lujza", email: "blu@gmail.com", cím: "1111 Buda, Fő utca 22."},
+    {név: "Banya Géza", email: "bg@gmail.com", cím: "1111 Buda, Fő utca 33."},
+    {név: "Bálint Bianka", email: "bb@gmail.com", cím: "1111 Buda, Fő utca 44."},
+    {név: "Bús Gerzson", email: "bge@gmail.com", cím: "1111 Buda, Fő utca 55."},
+    {név: "Botos Lili", email: "bl@gmail.com", cím: "1111 Buda, Fő utca 66."},
+    {név: "Békés Gusztáv", email: "bgu@gmail.com", cím: "1111 Buda, Fő utca 77."}
+]
 
-// <th> #
-let sorSzamCella = document.createElement("th")
-sorSzamCella.scope = "row"
-sorSzamCella.innerHTML = "1"
-szuloElem = document.querySelector("tbody#js>tr")
-szuloElem.appendChild(sorSzamCella)       
+let tablBody = document.querySelector("#userTable")  //szülőelem, beillesztés helye
+for (let i in felhasználók) {  //sorok száma: az in egy indexet generál userenként
+    let tr = document.createElement("tr")  //üres sor készítése
+    
+    //sorszámok cella sorfejlécként
+    let sorSzamCella = document.createElement("th")
+    sorSzamCella.scope = "row"
+    sorSzamCella.innerHTML = parseInt(i)+1
+    tr.appendChild(sorSzamCella)
+    
+    //adatcellák feltöltése a felhaszmálók objektumtömbből
+    for (let mező of Object.values(felhasználók[i])) {
+        let td = document.createElement("td")    
+        td.innerHTML = mező
+        tr.appendChild(td)
+    }
+    
+    //gombcsoportot tartalmazó cella elkészítése
+    let gombCsoport = document.createElement("td")
+    gombCsoport.className = "btn-group"
+    //Szerkesztés gomb elkészítése
+    let szerkesztésGomb = document.createElement("button")
+    szerkesztésGomb.className = "btn btn-info"
+    szerkesztésGomb.title = "Szerkesztés"
+    szerkesztésGomb.innerHTML = '<i class="fas fa-sync-alt"></i>'
+    gombCsoport.appendChild(szerkesztésGomb)
+    //Törlés gomb elkészítése
+    let törlésGomb = document.createElement("button")
+    törlésGomb.className = "btn btn-danger"
+    törlésGomb.title = "Törlés"
+    törlésGomb.innerHTML = '<i class="fas fa-trash-alt"></i>'
+    gombCsoport.appendChild(törlésGomb)
+    tr.appendChild(gombCsoport)  //a gombcsoport beillesztése
 
-// <td> Név
-let nevCella = document.createElement("td")
-nevCella.innerHTML = "Márk Lukács"
-szuloElem = document.querySelector("tbody#js>tr")
-szuloElem.appendChild(nevCella)
-
-// <td> Email
-let emailCella = document.createElement("td")
-emailCella.innerHTML = "@ml"
-szuloElem = document.querySelector("tbody#js>tr")
-szuloElem.appendChild(emailCella)
-
-// <td> Cím
-let cimCella = document.createElement("td")
-cimCella.innerHTML = "Kisfoktő"
-szuloElem = document.querySelector("tbody#js>tr")
-szuloElem.appendChild(cimCella)
-
-// <td> Gombok cellája
-let gombCella = document.createElement("td")
-gombCella.className = "btn-group"
-szuloElem = document.querySelector("tbody#js>tr")
-szuloElem.appendChild(gombCella)
-
-// <button> Szerkesztés gomb
-let szerkesztésGomb = document.createElement("button")
-szerkesztésGomb.className = "btn btn-info"
-szerkesztésGomb.title = "Szerkesztés"
-szuloElem = document.querySelector("tbody#js>tr td:last-child")
-szuloElem.appendChild(szerkesztésGomb)
-
-// <button> törlés gomb
-let törlésGomb = document.createElement("button")
-törlésGomb.className = "btn btn-danger"
-törlésGomb.title = "Törlés"
-szuloElem = document.querySelector("tbody#js>tr td:last-child")
-szuloElem.appendChild(törlésGomb)
-
-// <button> Szerkesztés gomb ikon
-let szerkesztésGombIkon = document.createElement("i")
-szerkesztésGombIkon.className = "fas fa-sync-alt"
-szuloElem = document.querySelector("tbody#js>tr td:last-child>button.btn.btn-info")
-szuloElem.appendChild(szerkesztésGombIkon)
-
-// <button> törlés gomb ikon
-let törlésGombIkon = document.createElement("i")
-törlésGombIkon.className = "fas fa-trash-alt"
-szuloElem = document.querySelector("tbody#js>tr td:last-child>button.btn.btn-danger")
-szuloElem.appendChild(törlésGombIkon)
+    tablBody.appendChild(tr)  //a cellákkal feltöltött sor beillesztése
+}
 
