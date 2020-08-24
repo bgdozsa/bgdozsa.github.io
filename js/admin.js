@@ -78,7 +78,7 @@ function törlésFüggvény(gomb) {
         //let kiválasztottNév = tr.querySelector("td:nth-child(2)").innerHTML
         //felhasználók = felhasználók.filter(person => person.név != kiválasztottNév);
         //myArray.delete(3); //a 4. elemet törli, másik megoldás
-        felhasználók.splice(kiválasztottSorszám - 1, 1)
+        felhasználók.splice(kiválasztottSorszám - 1, 1)  //törlés a listából
         document.querySelector("#userTable").innerHTML = ""  //előző táblázat törlése
         táblázatRajzolás()
     }
@@ -91,6 +91,7 @@ function szerkesztésFüggvény(gomb) {
     //console.log(kiválasztottSorszám)
     if (gomb.className == "btn btn-info") { //előkészítés szerkesztésre
         gomb.className = "btn btn-success"
+        gomb.title = "Mentés"
         gomb.innerHTML = '<i class="fas fa-save"></i>'
         tr.className = "table-warning"
         for (let i = 2; i < 5; i++) {
@@ -104,6 +105,7 @@ function szerkesztésFüggvény(gomb) {
         }
     } else { //mentés és visszaállítás
         gomb.className = "btn btn-info"
+        gomb.title = "Szerkesztés"
         gomb.innerHTML = '<i class="fas fa-sync-alt"></i>'
         tr.className = ""
         for (let i = 2; i < 5; i++) {
@@ -120,4 +122,16 @@ function szerkesztésFüggvény(gomb) {
         }
         //console.log(felhasználók[kiválasztottSorszám-1])
     }
+}
+
+
+function ujMentes() {
+    let újNév = document.querySelector("#nameInput").value
+    let újEmail = document.querySelector("#emailInput").value
+    let újCím = document.querySelector("#addressInput").value
+    let újFelhasználó = { név: újNév, email: újEmail, cím: újCím }
+    felhasználók.push(újFelhasználó)
+    console.log(felhasználók)
+    document.querySelector("#userTable").innerHTML = ""  //előző táblázat törlése
+    táblázatRajzolás()
 }

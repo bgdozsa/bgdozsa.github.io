@@ -23,9 +23,34 @@
     </div>
 
     <article class="row">
-        <div class="col-2"></div>
-        <div class="col-8"></div>
-        <div class="col-2"></div>
+        <div class="col-1"></div>
+        <div class="col-10">
+            <table class="table table-warning table-hover">
+                <caption>Új felhasználó megadása</caption>
+                <tbody>
+                    <tr>
+                        <td class="form-group">
+                            <label for="">Név:</label>
+                            <input id="nameInput" type="text" name="name-input" class="form-control" placeholder="Kérek egy nevet">
+                        </td>
+                        <td class="form-group">
+                            <label for="">Email cím:</label>
+                            <input id="emailInput" type="text" name="email-input" class="form-control" placeholder="Kérek egy Email címet">
+                        </td>
+                        <td class="form-group">
+                            <label for="">Cím:</label>
+                            <input id="addressInput" type="text" name="address-input" class="form-control" placeholder="Kérek egy lakcímet">
+                        </td>
+                        <td>
+                            <button class="btn btn-success" title="Mentés" onclick="ujMentes()">
+                                <i class="fas fa-save"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-1"></div>
     </article>
 
     <article class="row">
