@@ -127,8 +127,11 @@ function szerkesztésFüggvény(gomb) {
 
 function ujMentes() {
     let újNév = document.querySelector("#nameInput").value
+    document.querySelector("#nameInput").value = ""
     let újEmail = document.querySelector("#emailInput").value
+    document.querySelector("#emailInput").value = ""
     let újCím = document.querySelector("#addressInput").value
+    document.querySelector("#addressInput").value = ""
     let újFelhasználó = { név: újNév, email: újEmail, cím: újCím }
     felhasználók.push(újFelhasználó)
     console.log(felhasználók)
