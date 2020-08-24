@@ -73,11 +73,12 @@ function táblázatRajzolás() {
 function törlésFüggvény(gomb) {
     if (confirm("Biztosan törlöd a felhasználót?")) {
         let tr = gomb.parentElement.parentElement
-        //console.log(tr)  //tesztelés
-        let kiválasztottNév = tr.querySelector("td:nth-child(2)").innerHTML
-        //console.log(kiválasztottNév)
-        felhasználók = felhasználók.filter(person => person.név != kiválasztottNév);
+        let kiválasztottSorszám = tr.querySelector("th").innerHTML
+        //console.log(kiválasztottSorszám)
+        //let kiválasztottNév = tr.querySelector("td:nth-child(2)").innerHTML
+        //felhasználók = felhasználók.filter(person => person.név != kiválasztottNév);
         //myArray.delete(3); //a 4. elemet törli, másik megoldás
+        felhasználók.splice(kiválasztottSorszám - 1, 1)
         document.querySelector("#userTable").innerHTML = ""  //előző táblázat törlése
         táblázatRajzolás()
     }
