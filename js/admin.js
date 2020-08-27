@@ -14,20 +14,36 @@
     </td>
 </tr> */
 
-let felhasználók = [
-    {név: "Bagó Lajos", email: "bl@gmail.com", cím: "1111 Buda, Fő utca 11."},
-    {név: "Boros Lujza", email: "blu@gmail.com", cím: "1111 Buda, Fő utca 22."},
-    {név: "Banya Géza", email: "bg@gmail.com", cím: "1111 Buda, Fő utca 33."},
-    {név: "Bálint Bianka", email: "bb@gmail.com", cím: "1111 Buda, Fő utca 44."},
-    {név: "Bús Gerzson", email: "bge@gmail.com", cím: "1111 Buda, Fő utca 55."},
-    {név: "Botos Lili", email: "bl@gmail.com", cím: "1111 Buda, Fő utca 66."},
-    {név: "Békés Gusztáv", email: "bgu@gmail.com", cím: "1111 Buda, Fő utca 77."}
-]
 
-táblázatRajzolás()
+//főprogram
+const serverUrl = "http://localhost:3000/felhasznalok/"
+const kulcsok = ["id", "név", "email", "cím"]
+startGetUsers()
 
-function táblázatRajzolás() {
+
+function startGetUsers() {
+    getServerData(serverUrl).then(
+        data => { táblázatRajzolás(data) }
+    )
+}
+
+
+function getServerData(url) {
+    let fetchOptions = {
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache"
+    }
+    return fetch(url, fetchOptions).then(  //a then-t a fgv híváshoz tettük
+        response => response.json(),
+        err => console.error(err)
+    )
+}
+
+
+function táblázatRajzolás(felhasználók) {
     let tablBody = document.querySelector("#userTable")  //szülőelem, beillesztés helye
+    tablBody.innerHTML = ""  //előző tartalom törlése, kell?
     for (let i in felhasználók) {  //sorok száma: az in egy indexet generál userenként
         let tr = document.createElement("tr")  //üres sor készítése
         
@@ -38,9 +54,10 @@ function táblázatRajzolás() {
         tr.appendChild(sorSzamCella)
         
         //adatcellák feltöltése a felhaszmálók objektumtömbből
-        for (let mező of Object.values(felhasználók[i])) {
+        //a kulcsok tömb megadásával a sorrend a kulcsok tömbből jön
+        for (let key of kulcsok) {
             let td = document.createElement("td")    
-            td.innerHTML = mező
+            td.innerHTML = felhasználók[i][key]
             tr.appendChild(td)
         }
         
@@ -73,14 +90,11 @@ function táblázatRajzolás() {
 function törlésFüggvény(gomb) {
     if (confirm("Biztosan törlöd a felhasználót?")) {
         let tr = gomb.parentElement.parentElement
-        let kiválasztottSorszám = tr.querySelector("th").innerHTML
-        //console.log(kiválasztottSorszám)
-        //let kiválasztottNév = tr.querySelector("td:nth-child(2)").innerHTML
-        //felhasználók = felhasználók.filter(person => person.név != kiválasztottNév);
-        //myArray.delete(3); //a 4. elemet törli, másik megoldás
-        felhasználók.splice(kiválasztottSorszám - 1, 1)  //törlés a listából
-        document.querySelector("#userTable").innerHTML = ""  //előző táblázat törlése
-        táblázatRajzolás()
+        let id = tr.querySelector(":nth-child(2)").innerHTML
+        let fetchOptions = { method: "DELETE", mode: "cors", cache: "no-cache" }
+        fetch(serverUrl + id, fetchOptions)
+            .then( resp => resp.json() )
+            .then( json => startGetUsers() )
     }
 }
 
@@ -94,7 +108,7 @@ function szerkesztésFüggvény(gomb) {
         gomb.title = "Mentés"
         gomb.innerHTML = '<i class="fas fa-save"></i>'
         tr.className = "table-warning"
-        for (let i = 2; i < 5; i++) {
+        for (let i = 3; i < 6; i++) {  //a sorszám és az id nem módosítható
             let cella = tr.querySelector("td:nth-child(" + i + ")")
             let cellaTartalom = cella.innerHTML
             cella.innerHTML = ""
@@ -108,19 +122,26 @@ function szerkesztésFüggvény(gomb) {
         gomb.title = "Szerkesztés"
         gomb.innerHTML = '<i class="fas fa-sync-alt"></i>'
         tr.className = ""
-        for (let i = 2; i < 5; i++) {
-            let cella = tr.querySelector("td:nth-child(" + i + ")")
+        let módosítottAdatsor = { név: "", email: "", cím: "" }
+        for (let i = 3; i < 6; i++) {
+            let cella = tr.querySelector(":nth-child(" + i + ")")
             let input = cella.querySelector("input")
             let cellaTartalom = input.value
             cella.removeChild(input)
             cella.innerHTML = cellaTartalom  //visszaírás a táblázatba
             switch (i) {
-                case 2: felhasználók[kiválasztottSorszám - 1].név = cellaTartalom; break;
-                case 3: felhasználók[kiválasztottSorszám - 1].email = cellaTartalom; break;
-                case 4: felhasználók[kiválasztottSorszám - 1].cím = cellaTartalom; break;
+                case 3: módosítottAdatsor.név = cellaTartalom; break;
+                case 4: módosítottAdatsor.email = cellaTartalom; break;
+                case 5: módosítottAdatsor.cím = cellaTartalom; break;
             }
         }
-        //console.log(felhasználók[kiválasztottSorszám-1])
+        let id = tr.querySelector(":nth-child(2)").innerHTML
+        let fetchOptions = { method: "PUT", mode: "cors", cache: "no-cache",
+                        headers: {"Content-Type": 'application/json'},
+                        body: JSON.stringify(módosítottAdatsor) }
+        fetch(serverUrl + id, fetchOptions)
+            .then( resp => resp.json(), err => console.error(err) )
+            .then( json => startGetUsers() )
     }
 }
 
@@ -133,8 +154,11 @@ function ujMentes() {
     let újCím = document.querySelector("#addressInput").value
     document.querySelector("#addressInput").value = ""
     let újFelhasználó = { név: újNév, email: újEmail, cím: újCím }
-    felhasználók.push(újFelhasználó)
-    console.log(felhasználók)
-    document.querySelector("#userTable").innerHTML = ""  //előző táblázat törlése
-    táblázatRajzolás()
+    //az id-t a server adja hozzá automatikusan, de utolsó mezőnek
+    let fetchOptions = { method: "POST", mode: "cors", cache: "no-cache",
+                        headers: {"Content-Type": 'application/json'},
+                        body: JSON.stringify(újFelhasználó) }
+    fetch(serverUrl, fetchOptions)
+        .then( resp => resp.json(), err => console.error(err) )
+        .then( json => startGetUsers() )
 }

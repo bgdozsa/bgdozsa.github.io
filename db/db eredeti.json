@@ -1,0 +1,16 @@
+﻿{
+    "felhasznalok" : [
+        {"id": 1, "név": "Bagó Lajos", "email": "bl@gmail.com", "cím": "1111 Buda, Fő utca 11."},
+        {"id": 2, "név": "Boros Lujza", "email": "blu@gmail.com", "cím": "1111 Buda, Fő utca 22."},
+        {"id": 3, "név": "Banya Géza", "email": "bg@gmail.com", "cím": "1111 Buda, Fő utca 33."},
+        {"id": 4, "név": "Bálint Bianka", "email": "bb@gmail.com", "cím": "1111 Buda, Fő utca 44."},
+        {"id": 5, "név": "Bús Gerzson", "email": "bge@gmail.com", "cím": "1111 Buda, Fő utca 55."},
+        {"id": 6, "név": "Botos Lili", "email": "bl@gmail.com", "cím": "1111 Buda, Fő utca 66."},
+        {"id": 7, "név": "Békés Gusztáv", "email": "bgu@gmail.com", "cím": "1111 Buda, Fő utca 77."}
+    ],
+    "cicak" : [
+        {"id": 1, "név": "Cirmi", "év": 1},
+        {"id": 2, "név": "Lukrécia", "év": 2},
+        {"id": 3, "név": "Tomi", "év": 3}
+    ]
+}
