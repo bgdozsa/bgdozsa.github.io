@@ -16,7 +16,7 @@
 
 
 //főprogram
-const serverUrl = "https://my-json-server.typicode.com/bgdozsa/bgdozsa.github.io/felhasznalok/"
+const serverUrl = "db1.json"
 const kulcsok = ["id", "név", "email", "cím"]
 startGetUsers()
 

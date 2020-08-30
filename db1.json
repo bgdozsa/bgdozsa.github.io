@@ -1,0 +1,26 @@
+[
+  {
+    "név": "Boros Lujza",
+    "email": "blu@gmail.com",
+    "cím": "1111 Buda, Fő utca 22.",
+    "id": 2
+  },
+  {
+    "név": "Bálint Géza",
+    "email": "bg@gmail.com",
+    "cím": "1111 Buda, Fő utca 44.",
+    "id": 4
+  },
+  {
+    "név": "Kiss János",
+    "email": "kj@kkk.hu",
+    "cím": "1234 Kál, Kis u. 3.",
+    "id": 5
+  },
+  {
+    "név": "Mekk Elek",
+    "email": "me@me.hu",
+    "cím": "3456 Vác, Alvég u. 67",
+    "id": 6
+  }
+]
