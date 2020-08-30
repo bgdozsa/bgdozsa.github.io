@@ -155,7 +155,7 @@ function ujMentes() {
     document.querySelector("#addressInput").value = ""
     let újFelhasználó = { név: újNév, email: újEmail, cím: újCím }
     //az id-t a server adja hozzá automatikusan, de utolsó mezőnek
-    let fetchOptions = { method: "POST", mode: "cors", cache: "no-cache",
+    let fetchOptions = { method: "POST",
                         headers: {"Content-Type": 'application/json'},
                         body: JSON.stringify(újFelhasználó) }
     fetch(serverUrl, fetchOptions)
